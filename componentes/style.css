@@ -1,0 +1,30 @@
+body {
+    font-family: "Dosis", sans-serif;
+    font-weight: 600;
+  }
+ 
+  /* fondo imagen */
+  .fondoImg {
+    background-image: url(../assets/upfullscreendesktopgg1.jpg);
+  }
+
+  /* fondo opaco */
+  .fondoOpaco {
+    background-color: rgba(201, 36, 10, 0.30);
+  }
+
+  /* paleta de colores rojo#780000, gris #747274, azul#0b132b, claro#b9d6f2, negro#0f1a20 */
+  .bg-dark {
+    background-color: #0f1a20 !important;
+  }
+
+  .bg-white {
+    background-color: #b9d6f2 !important;
+  }
+
+  .brand {
+    font-family: "Dancing Script", cursive;
+    font-size: 3rem;
+  }
+
+  
