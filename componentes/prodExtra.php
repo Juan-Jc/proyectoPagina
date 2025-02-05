@@ -1,5 +1,5 @@
 <?php 
- $sqle = 'SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE NOT categoria = :categoria AND p.oferta=0 ORDER BY RAND()
+ $sqle = 'SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE NOT p.idCat = :categoria AND p.oferta=0 ORDER BY RAND()
  LIMIT 5';
  $stm = $pdo->prepare($sqle);
  $stm->bindParam(':categoria', $categoria, PDO::PARAM_STR);

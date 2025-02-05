@@ -38,6 +38,7 @@
         <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1):?>
           <a href="administrador.php" class="btn btn-primary mx-2">Panel de Control</a>
           <?php endif;?>
+          <a href="carrito.php">🛒</a>
       </div>
     </div>
   </nav>

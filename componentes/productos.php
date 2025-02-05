@@ -13,9 +13,9 @@
             $categoria = $_GET['categoria'];
             require_once "conexionDb.php";
             if($categoria !== 'oferta')
-            {$sql = 'SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE p.categoria = :categoria GROUP BY p.idProducto';}
+            {$sql = 'SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE p.idCat = :categoria GROUP BY p.idProducto';}
             else{
-                $sql='SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE p.categoria = :categoria OR NOT p.oferta = 0 GROUP BY p.idProducto';;
+                $sql='SELECT * FROM productos p LEFT JOIN fotosproductos f ON p.idProducto = f.idProducto WHERE p.idCat = :categoria OR NOT p.oferta = 0 GROUP BY p.idProducto';;
             }
             $stm = $pdo->prepare($sql);
             $stm->bindParam(':categoria', $categoria, PDO::PARAM_STR);
@@ -34,7 +34,7 @@
                     <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                     <p class="card-text"><?= $producto['descripcion'] ?></p>
                     <div class="d-flex justify-content-between align-center">
-                        <a href="#" class="btn btn-danger">Comprar</a>
+                        <a href="carrito.php?idProducto=<?=$producto['idProducto']?>" class="btn btn-danger">Comprar</a>
                         <span><?= $producto['precio'] ?>€</span>
                     </div>
                     <a class="btn btn-primary" data-bs-toggle="modal"
@@ -46,6 +46,19 @@
             <?php require "modal.php"; ?>
         <?php } ?>
         <?php require_once "prodExtra.php"; ?>
+        <?php
+        if(isset($_GET['car'])){
+            $carritoStatus = $_GET['car'];
+            if($carritoStatus){
+                echo '<div class = "alert alert-success alert-dismissible fade show w-25 text-center position-absolute bottom-0 end-0" role="alert"> Se ha añadido al carrito!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                        </div>';
+            }else {
+                echo '<div class="alert alert-danger w-25 text-center position-absolute bottom-0 end-0" role="alert">Error No se pudo Añadir al carrito.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button></div>';
+            }
+        }
+        ?>
 
     </main>
 
