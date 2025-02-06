@@ -26,7 +26,7 @@ try {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="../admin/updateDB.php" method="post">
+        <form action="../admin/updateDB.php" method="post" enctype="multipart/form-data">
           <input type="hidden" name="idProdUpdate" id="idProdUpdate" value="">
           <label for="prodNameUpdate">Nombre de Producto</label>
           <input class="form-control mt-2" type="text" name="prodNameUpdate" id="prodNameUpdate">
