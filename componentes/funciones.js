@@ -95,9 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
   let carrito = [];
 
   // Agregar al carrito
-  document.querySelectorAll('.agregar-carrito').forEach(button => {
+  document.querySelectorAll('.aggCart').forEach(button => {
       button.addEventListener('click', function() {
-          const idProducto = this.getAttribute('data-id');
+          const idProducto = this.getAttribute('data-idProducto');
+          console.log('hiciste clickkkk');
           agregarAlCarrito(idProducto);
       });
   });
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Función para agregar productos al carrito
   function agregarAlCarrito(idProducto) {
     // fetch a la base de datos en carrito
-    fetch(`carrito.php?id=${idProducto}`, {
+    fetch(`carrito.php?idProducto=${idProducto}`, {
       'method': 'GET',
       'headers': { 'Content-Type': 'application/x-www-form-urlencoded' }
    })

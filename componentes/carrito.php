@@ -3,7 +3,8 @@ if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['idProducto'])) {
-
+    echo $_GET['idProducto'];
+    exit;
     include 'conexionDb.php';
     try {
         $sql = 'SELECT * FROM productos WHERE idProducto = :id';
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['idProducto'])) {
                 'cantidad' => 1
             ];
             array_push($_SESSION['carrito'], $producto);
+            echo json_encode($producto);
             header("location: productos.php?categoria=$response[idCat]&car=1");
         }
     } catch (\Throwable $th) {
@@ -38,5 +40,5 @@ if (isset($_GET['eliminar'])) {
     );
 }
 
-$total = array_sum(array_column($_SESSION['carrito'], 'precio'));
+
 ?>
