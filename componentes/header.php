@@ -1,3 +1,4 @@
+<?php $carrito_count = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;?>
 <header>
   <nav class="navbar navbar-expand sticky-top bg-dark">
     <div class="container-fluid d-flex justify-content-around">
@@ -38,8 +39,12 @@
         <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1):?>
           <a href="administrador.php" class="btn btn-primary mx-2">Panel de Control</a>
           <?php endif;?>
-          <a href="carrito.php">🛒</a>
+          <!-- Button trigger modal carrito-->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="bi bi-cart-fill"></i>(<span id="carrito-count"><?= $carrito_count ?></span>)
+        </button>
       </div>
     </div>
   </nav>
+  <?php require_once 'modalCarrito.php'?>
 </header>

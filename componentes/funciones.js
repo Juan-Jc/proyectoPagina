@@ -85,5 +85,67 @@ if(modalUpdate){
 
 
 // tooltips
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+
+// añadir productos al modal carrito
+document.addEventListener('DOMContentLoaded', function() {
+  // Variables
+  let carrito = [];
+
+  // Agregar al carrito
+  document.querySelectorAll('.agregar-carrito').forEach(button => {
+      button.addEventListener('click', function() {
+          const idProducto = this.getAttribute('data-id');
+          agregarAlCarrito(idProducto);
+      });
+  });
+
+  // Función para agregar productos al carrito
+  function agregarAlCarrito(idProducto) {
+    // fetch a la base de datos en carrito
+    fetch(`carrito.php?id=${idProducto}`, {
+      'method': 'GET',
+      'headers': { 'Content-Type': 'application/x-www-form-urlencoded' }
+   })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+        document.getElementById('carrito-count').textContent = data.carrito_count;
+});
+
+
+// cantidad de productos
+
+
+      let productoExistente = carrito.find(item => item.id === idProducto);
+
+      if (productoExistente) {
+          productoExistente.cantidad += 1;
+      } else {
+          carrito.push({ id: idProducto, cantidad: 1 });
+      }
+
+      mostrarCarrito();
+  }
+
+  // Función para mostrar el carrito en el modal
+  function mostrarCarrito() {
+      const modalCarrito = document.getElementById('modalCarrito');
+      const carritoContenido = document.getElementById('carrito-contenido');
+      
+      carritoContenido.innerHTML = ''; // Limpiar el contenido del carrito
+
+      carrito.forEach(item => {
+          carritoContenido.innerHTML += `<p>Producto ID: ${item.id}, Cantidad: ${item.cantidad}</p>`;
+      });
+
+      modalCarrito.style.display = 'block';
+  }
+
+  // Cerrar el modal
+  document.getElementById('cerrar-modal').addEventListener('click', function() {
+      document.getElementById('modalCarrito').style.display = 'none';
+  });
+});

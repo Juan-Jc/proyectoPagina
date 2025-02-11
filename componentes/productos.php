@@ -34,10 +34,12 @@
                     <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                     <p class="card-text"><?= $producto['descripcion'] ?></p>
                     <div class="d-flex justify-content-between align-center">
-                        <a href="carrito.php?idProducto=<?=$producto['idProducto']?>" class="btn btn-danger">Comprar</a>
+                        <button data-idProducto="<?=$producto['idProducto']?>" class="btn btn-danger aggCart">Comprar</button>
                         <span><?= $producto['precio'] ?>€</span>
                     </div>
                     <a class="btn btn-primary" data-bs-toggle="modal"
+
+
                         href="#productoModal<?= $producto['idProducto'] ?>">
                         Mas...
                     </a>
@@ -61,6 +63,7 @@
         ?>
 
     </main>
+    <?php require_once 'alertas.php';?>
 
     <?php require_once "footer.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

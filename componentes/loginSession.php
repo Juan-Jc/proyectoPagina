@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stm1->bindValue(4,$ip,PDO::PARAM_STR);
         $stm1->execute();
         if($response){
+            $_SESSION['email'] = $response['email'];
             $_SESSION['nombre'] = $response['nombre'];
             $_SESSION['login'] = true;
             $_SESSION['admin'] = $response['rol'];

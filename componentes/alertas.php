@@ -71,4 +71,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'GET') {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button></div>';
         }
     }
+    if(isset($_GET['fnc'])){
+        $producto = $_GET['fnc'];
+        if($producto){
+            echo '<div class = "alert alert-success alert-dismissible fade show w-25 text-center position-absolute bottom-0 end-0" role="alert"> Compra Finalizada      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    </div>';
+        }
+    } 
 }
