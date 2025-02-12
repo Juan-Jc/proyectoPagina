@@ -1,5 +1,4 @@
-<?php $carrito_count = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
-$total = array_sum(array_column($_SESSION['carrito'], 'precio'));?>
+<?php $carrito_count = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0 ?>
 <header>
   <nav class="navbar navbar-expand sticky-top bg-dark">
     <div class="container-fluid d-flex justify-content-around">

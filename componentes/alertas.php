@@ -78,4 +78,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'GET') {
                     </div>';
         }
     } 
+    if (isset($_SESSION['email'])) {
+        $email_cliente = $_SESSION['email'];
+    
+        echo "<h1>¡Gracias por tu compra, $email_cliente!</h1>";
+        echo "<p>Tu pedido ha sido procesado exitosamente.</p>";
+    } else {
+        echo "<p>El usuario no está logueado. No se pudo procesar el pedido.</p>";
+    }
 }
